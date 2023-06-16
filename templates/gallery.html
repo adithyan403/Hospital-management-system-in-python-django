@@ -1,0 +1,245 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <script src="{% static '/images/slider/slider-3.jpg'%}"></script>
+    <script src="{% static '/js/popper.min.js'%}"></script>
+    <script src="{% static '/js/bootstrap.min.js'%}"></script>
+    <script src="{% static '/plugins/scroll-fixed/jquery-scrolltofixed-min.js'%}"></script>
+    <script src="{% static '/plugins/slider/js/owl.carousel.min.js'%}"></script>
+    <script src="{% static '/js/script.js'%}"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Cardio Care Medical Hospital Website Template | Smarteyeapps.com</title>
+
+    <link rel="shortcut icon" href="{% static '/images/fav.jpg'%}">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static '/css/fontawsom-all.min.css'%}">
+    <link rel="stylesheet" href="{% static '/plugins/slider/css/owl.carousel.min.css'%}">
+    <link rel="stylesheet" href="{% static '/plugins/slider/css/owl.theme.default.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css'%}" />
+    <script>
+      function confirmCancellation() {
+          var result = confirm("Are you sure you want to cancel this booking?");
+          if (result) {
+              // Perform cancellation action
+              alert("Booking cancelled successfully!");
+          } else {
+              // Cancelled by the user
+              alert("Cancellation cancelled!");
+          }
+      }
+  </script>
+</head>
+
+<body>
+    <div class="container body-container">
+        <!-- ################# Header Starts Here#######################--->
+        <header>
+            <div class="row header-top">
+                <div class="col-lg-7 col-md-12 left-item">
+                    <ul>
+                        <li><i class="fas fa-envelope-square"></i> sales@smarteyeapps.com</li>
+                        <li><i class="fas fa-phone-square"></i> +123 987 887 765</li>
+                    </ul>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block right-item">
+                    <ul>
+                        <li><a><i class="fab fa-github"></i></a></li>
+                        <li><a><i class="fab fa-google-plus-g"></i></a></li>
+                        <li> <a><i class="fab fa-pinterest-p"></i></a></li>
+                        <li><a><i class="fab fa-twitter"></i></a></li>
+                        <li> <a><i class="fab fa-facebook-f"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div  class=" ">
+           
+                <div class="row header-nav">
+                    <div class="col-md-3 no-padding col-sm-12 nav-img">
+                        <img src="{% static '/images/logo.jpg'%}" alt="">
+                       <a data-toggle="collapse" data-target="#menu" href="#menu" ><i class="fas d-block d-md-none small-menu fa-bars"></i></a>
+                    </div>
+                    <div id="menu" class="col-md-9 d-none d-md-block nav-item">
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/about">About Us</a></li>
+                            <li><a href="/service">Services</a></li>
+                            <li><a href="/blog">Blog</a></li>
+                            <li><a href="/booking">Bookings</a></li>
+                            <li><a href="/contact">Contact Us</a></li>
+                            <li class="nav-item dropdown">Account
+                                <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
+                            <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                                {% if not request.session.login_status %}
+                                <li><a class="dropdown-item" href="/login">Login</a></li>
+                                <li><a class="dropdown-item" href="/signup">Signup</a></li>
+                                {% endif %}
+                                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                            </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div> 
+
+            
+        </div>
+        </header>
+        
+       
+          <!--  ************************* Page Title Starts Here ************************** -->
+               <div class="page-nav no-margin row">
+                   <div class="container">
+                       <div class="row">
+                           <h2>Book Appointment</h2>
+                           <ul>
+                               <li> <a href="/"><i class="fas fa-home"></i> Home</a></li>
+                               <li><i class="fas fa-angle-double-right"></i> Booking</li>
+                           </ul>
+                       </div>
+                   </div>
+               </div>
+       
+    <!-- ######## Page  Title End ####### -->
+       
+    
+     <!--  ************************* Gallery Starts Here ************************** -->
+        <div class="gallery">    
+           <div class="container">
+              <div class="row">
+                
+
+                <div class="container py-4">
+                    <h1>Hospital Booking</h1>
+                    
+                    <form method="POST" action="{% url 'booking_submission' %}">
+                      {% csrf_token %}
+                      <div class="mb-3">
+                        <label for="department" class="form-label">Select Department:</label>
+                        <select class="form-select" id="department" name="department">
+                          <option value="cardiology">Cardiology</option>
+                          <option value="dermatology">Dermatology</option>
+                          <option value="orthopedics">Orthopedics</option>
+                          <option value="neurology">Neurology</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label for="doctor" class="form-label">Select Doctor:</label>
+                        <select class="form-select" id="doctor" name="doctor">
+                          <option value="drsmith">Dr. Smith</option>
+                          <option value="drjones">Dr. Jones</option>
+                          <option value="dramy">Dr. Amy</option>
+                          <option value="drsam">Dr. Sam</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label for="date" class="form-label">Select Date:</label>
+                        <input type="date" class="form-control" id="date" name="date">
+                      </div>
+                      <div class="mb-3">
+                        <label for="time" class="form-label">Select Time:</label>
+                        <input type="time" class="form-control" id="time" name="time">
+                      </div>
+                      <button type="submit" class="btn btn-primary">Book Appointment</button>
+                    </form>
+                  </div>
+                  <main>
+                    <div class="container mt-5">
+                      <h1>My Bookings</h1>
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Booking ID</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>department</th>
+                            <th>doctor</th>
+                            <th>Status</th>
+                            <th>Cancel</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for i in data %}
+                          <tr>
+                            <td>{{i.id}}</td>
+                            <td>{{i.date}}</td>
+                            <td>{{i.time}}</td>
+                            <td>{{i.department}}</td>
+                            <td>{{i.doctor}}</td>
+                              {% if i.id in ids %}
+                                <td>confirmed</td>
+                              {% else %}
+                                <td>waiting</td>
+                              {% endif %}
+                                                                            
+                            
+                            <td><form method="post" action="{% url 'booking_cancel' %}">
+                              {% csrf_token %}
+                              <button id="myButton" onclick="confirmCancellation()" class="btn btn-danger" name="id" value="{{i.id}}">Cancel</button>
+                              
+                            </form></td>
+                          </tr>
+                          {% endfor %} 
+                        </tbody>
+                      </table>
+                    </div>
+                  </main>
+                
+                  <!-- Bootstrap JS -->
+                  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                
+        <!-- ######## Gallery End ####### -->
+    
+    <!-- ################# Footer Starts Here#######################--->
+
+
+    <footer class="footer row">
+       
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <h2>About Us</h2>
+                    <p>
+                        Smart Eye is a leading provider of information technology, consulting, and business process services. Our dedicated employees offer strategic insights, technological expertise and industry experience.
+                    </p>
+                    <p>We focus on technologies that promise to reduce costs, streamline processes and speed time-to-market, Backed by our strong quality processes and rich experience managing global... </p>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <h2>Useful Links</h2>
+                    <ul class="list-unstyled link-list">
+                        <li><a ui-sref="about" href="#/about">About us</a><i class="fa fa-angle-right"></i></li>
+                        <li><a ui-sref="portfolio" href="#/portfolio">Portfolio</a><i class="fa fa-angle-right"></i></li>
+                        <li><a ui-sref="products" href="#/products">Latest jobs</a><i class="fa fa-angle-right"></i></li>
+                        <li><a ui-sref="gallery" href="#/gallery">Gallery</a><i class="fa fa-angle-right"></i></li>
+                        <li><a ui-sref="contact" href="#/contact">Contact us</a><i class="fa fa-angle-right"></i></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-sm-12 map-img">
+                    <h2>Contact Us</h2>
+                    <address class="md-margin-bottom-40">
+                        BlueDart <br>
+                        Marthandam (K.K District) <br>
+                        Tamil Nadu, IND <br>
+                        Phone: +91 9159669599 <br>
+                        Email: <a href="mailto:info@anybiz.com" class="">info@bluedart.in</a><br>
+                        Web: <a href="smart-eye.html" class="">www.bluedart.in</a>
+                    </address>
+
+                </div>
+            </div>
+    </footer>
+    <div class="copy row">
+            
+                <a href="https://www.smarteyeapps.com/">2015 &copy; All Rights Reserved | Designed and Developed by Smarteyeapps</a>
+                
+               
+
+        </div>
+</div>
+
+</body>
+
+
+
+
+</html>
